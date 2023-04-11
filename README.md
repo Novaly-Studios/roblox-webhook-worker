@@ -2,6 +2,8 @@
 
 This is a simple Cloudflare Worker that can be used to handle Roblox webhook requests.
 
+> **Warning**: The GDPR removal feature hasn't been fully tested. Please report any issues you find.
+
 # Setup
 
 ## Prerequisites
@@ -57,11 +59,17 @@ You can now deploy the worker to your Cloudflare account. This should output a l
 $ wrangler publish
 ```
 
+## Making sure it's setup correctly
+
+See if you've missed anything by checking the `/status` endpoint of your worker. This should tell you if you're missing any secrets.
+
+`https://roblox-webhook-worker.<your-worker-account>.workers.dev/status`
+
 ## Configuring the Roblox webhook
 
 You can now configure the Roblox webhook to use your worker. You will need to provide the URL of your worker and the secret you defined earlier.
 
-Your webhook URL will be in the format `https://roblox-webhook-worker.<your-worker-account>.workers.dev/execute`
+Your webhook URL should be: `https://roblox-webhook-worker.<your-worker-account>.workers.dev`
 
 # Supported Event Types
 

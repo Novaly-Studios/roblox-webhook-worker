@@ -83,7 +83,7 @@ export default {
         const { method, url } = request;
         const { pathname } = new URL(url);
 
-        if (pathname === "/execute" && method === "POST") {
+        if (pathname === "/" && method === "POST") {
             const rawBody = await request.text();
             const signature = request.headers.get("roblox-signature");
 
@@ -128,6 +128,15 @@ export default {
             console.log(body);
 
             return new Response("Unhandled event type", { status: 400 });
+        } else if (pathname === "/status" && method === "GET") {
+            const NO_KEY = env.OPEN_CLOUD_API_KEY === null;
+            const NO_SECRET = env.WEBHOOK_SECRET === null;
+
+            if (NO_KEY || NO_SECRET) {
+                return new Response(`Missing secrets: ${NO_KEY ? "OPEN_CLOUD_API_KEY" : ""} ${NO_SECRET ? "WEBHOOK_SECRET" : ""}`, { status: 500 });
+            }
+
+            return new Response("OK", { status: 200 });
         }
 
         return new Response("Not Found", { status: 404 });
