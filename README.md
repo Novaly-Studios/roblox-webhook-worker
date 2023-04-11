@@ -2,7 +2,7 @@
 
 This is a simple Cloudflare Worker that can be used to handle Roblox webhook requests.
 
-> **Warning**: The GDPR removal feature hasn't been fully tested. Please report any issues you find.
+> **Warning**: The GDPR removal feature hasn't been real-world tested yet, however it should work according to the documentation.
 
 # Setup
 
